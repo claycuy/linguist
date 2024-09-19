@@ -1,0 +1,56 @@
+const userName = "Alice"
+const userAge = 25
+var isLoggedIn = false
+
+function checkLogin():
+    if !isLoggedIn:
+        ask("Enter your username:")
+        if userName == "Alice":
+            print("Login successful")
+            isLoggedIn = true
+        else:
+            print.err("Login failed. Wrong username.")
+            checkLogin()
+    end:
+end:
+
+checkLogin()
+
+if isLoggedIn:
+   print("Welcome back, " + userName + "!")
+
+   delay:
+       print("Preparing your dashboard...")
+   end:2000:
+
+   const dashboard = getElement("#dashboard")
+   dashboard.text = "Hello, " + userName + "!"
+   dashboard.design = "background-color: lightblue; color: black;"
+
+   if userAge >= 18:
+      print(userName + " is allowed to access adult content.")
+      const content = createElement("div")
+      content.text = "Here is some exclusive content for adults."
+      body.addElement(content)
+   else:
+      print.warn(userName + " is under 18, restricted content applied.")
+   end:
+
+   var countdown = 5
+   repeat:
+      print("Logging out in " + countdown + " seconds...")
+      countdown--
+      if countdown == 0:
+         break:
+      end:
+   end:1000:
+
+   print("You have been logged out.")
+   isLoggedIn = false
+
+end:
+
+const storage = require('storage')
+storage.save(userName, "lastLogin", "2024-09-18")
+
+print("Last login date for " + userName + ": " + storage.get(userName, "lastLogin"))
