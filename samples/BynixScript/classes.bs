@@ -1,0 +1,24 @@
+class Person:
+  constructor(name, age):
+    this.name = name
+    this.age = age
+  end
+  
+  speak():
+    print(`My name is ${this.name} and I'm still ${this.age} years ago`)
+  end
+end
+
+class Introduction extends Person:
+  constructor(name, age, hobby):
+    super(name, age)
+    this.hobby = hobby
+  end
+  
+  speak():
+    print(`My name is ${this.name}, I'm still ${this.age} years ago and I like ${this.hobby}`)
+  end
+end
+
+const person = new Introduction("Clay", 14, "Coding")
+person.speak()
